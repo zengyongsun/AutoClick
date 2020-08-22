@@ -83,8 +83,10 @@ public class RobService extends AccessibilityService {
         @TargetApi(Build.VERSION_CODES.N)
         @Override
         public void handleMessage(Message msg) {
+            int click_x = random.nextInt(800);
+            int click_y = random.nextInt(800) + 800;
             if (msg.what == 0) {
-                dispatchGestureClick(760, 760);
+                dispatchGestureClick(click_x, click_y);
             } else if (msg.what == 1) {
                 performGlobalAction(GLOBAL_ACTION_BACK);
             }
@@ -93,8 +95,8 @@ public class RobService extends AccessibilityService {
 
     public void dispatchGestureClick(int x, int y) {
         Path path = new Path();
-        path.moveTo(x, y);
-        path.lineTo(x - 100, y);
+        path.moveTo(x + 150, y);
+        path.lineTo(x, y);
         boolean click = dispatchGesture(new GestureDescription
                 .Builder()
                 .addStroke(new GestureDescription.StrokeDescription(path,
